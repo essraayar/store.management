@@ -1,9 +1,11 @@
 <template>
-<search-form></search-form>
+<div><router-link to="/search">Search</router-link>   </div>
+<div><router-link to="/create">Create</router-link></div>
+  <router-view></router-view>
 </template>
 
 <script>
-import SearchForm from "@/components/SearchForm.vue";
+
 export default {
   name: 'App',
   data(){
@@ -20,9 +22,6 @@ export default {
       ]
     }
   },
-  components:{
-    SearchForm
-  }
 }
 </script>
 
@@ -32,19 +31,19 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: black;
+  color: #ecd3d3;
   margin-top: 60px;
 }
 form{
   max-width: 420px;
   margin: 30px auto;
-  background: lightgray;
+  background: #3b1e6a;
   text-align: left;
   padding: 40px;
   border-radius: 10px;
 }
 label,option{
-  color: gray;
+  color: #d2c9c9;
   font-weight: bold;
   display: inline-block;
   margin: 25px 0 15px;
@@ -57,19 +56,23 @@ select{
   box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #ddd;
-  color: #555;
+  color: #090808;
 }
 
 button{
-  background: #aaaaaa;
+  background: #f5ef0c;
   border: 0;
   padding: 10px 20px;
   margin-top: 30px;
-  color: white;
+  color: #090808;
   border-radius: 20px;
 }
 .submit{
   text-align: center;
+}
+.option{
+  color: #090808;
+
 }
 </style>
 

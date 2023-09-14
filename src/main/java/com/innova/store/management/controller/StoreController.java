@@ -6,8 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.innova.store.management.model.City;
+import com.innova.store.management.model.District;
 import com.innova.store.management.model.StoreEntity;
+import com.innova.store.management.model.dto.StoreRequest;
 import com.innova.store.management.repository.StoreRepository;
+import com.innova.store.management.service.CityService;
+import com.innova.store.management.service.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +20,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/store")
+@CrossOrigin("http://localhost:8080/")
 public class StoreController {
 
     /*@GetMapping("/name")
@@ -24,6 +30,11 @@ public class StoreController {
 
      @Autowired
      StoreRepository storeRepository;
+     @Autowired
+     private CityService cityService;
+
+     @Autowired
+     private DistrictService districtService;
 
      @GetMapping("/get-all-stores")
     public List<StoreEntity> getAllStore () {
@@ -32,7 +43,18 @@ public class StoreController {
     }
 
     @PostMapping("/create-stores")
-    public StoreEntity createStore(@RequestBody StoreEntity store) {
+    public StoreEntity createStore(@RequestBody StoreRequest storeRequest) {
+        City city = cityService.findCityByName(storeRequest.getCity()) != null ?
+                cityService.findCityByName(storeRequest.getCity()) :
+                new City(storeRequest.getCity());
+
+        District district = districtService.findByNameAndCity(storeRequest.getDistrict(),storeRequest.getCity())!=null?
+                districtService.findByNameAndCity(storeRequest.getDistrict(),storeRequest.getCity()):
+                new District(storeRequest.getDistrict(),city);
+        StoreEntity store = new StoreEntity(storeRequest.getStore_type(),
+                city,
+                district,
+                storeRequest.getStore_name());
         StoreEntity savedStore = storeRepository.save(store);
 
         return savedStore;

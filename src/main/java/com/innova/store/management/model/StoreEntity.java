@@ -13,11 +13,13 @@ public class StoreEntity {
     @Column(name = "store_type", nullable = false)
     private String store_type;
 
-    @Column(name = "city", nullable = false)
-    private String city;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="city_id")
+    private City city;
 
-    @Column(name = "district", nullable = false)
-    private String district;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="district_id")
+    private District district;
 
     @Column(name = "store_name", nullable = false)
     private String store_name;
@@ -27,7 +29,7 @@ public class StoreEntity {
 
     }
 
-    public StoreEntity(String store_type, String city, String district, String store_name) {
+    public StoreEntity(String store_type, City city, District district, String store_name) {
         this.store_type = store_type;
         this.city = city;
         this.district = district;
@@ -40,18 +42,18 @@ public class StoreEntity {
     public void setStore_type(String store_type) {
         this.store_type = store_type;
     }
-    public String getCity() {
+    public City getCity() {
         return city;
     }
-    public void setCity(String city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
 
-    public String getDistrict() {
+    public District getDistrict() {
         return district;
     }
-    public void setDistrict(String district) {
+    public void setDistrict(District district) {
         this.district = district;
     }
 
