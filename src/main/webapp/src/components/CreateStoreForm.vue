@@ -4,22 +4,25 @@
   <form  @submit.prevent="createStore">
 
     <label for="exampleFormControlTextarea1">Mağaza Adı</label>
-    <input class="form-control" v-model="store.store_name">
+    <input class="form-control" v-model="store.store_name" required>
 
     <label for="exampleFormControlTextarea1">Mağaza Türü</label>
-    <input class="form-control" v-model="store.store_type">
+    <input class="form-control" v-model="store.store_type" required>
+
+    <label for="exampleFormControlTextarea1">Mağaza Linki</label>
+    <input class="form-control" v-model="store.store_link" required>
 
     <label>Şehir:</label>
-    <select v-model="store.city">
+    <select v-model="store.city" required @change="getDistricts">
       <option  class="option"  v-for="item in items" :key="item">
         {{item}}
       </option>
     </select>
 
     <label>İlçe:</label>
-    <select v-model="store.district">
-      <option class="option" v-for="item in differentItem" :key="item.name" :value="item.name">
-        {{item.name}}
+    <select v-model="store.district" required>
+      <option class="option" v-for="item in differentItem" :key="item" :value="item">
+        {{item}}
       </option>
     </select>
 
@@ -43,26 +46,50 @@ export default {
         store_type:'',
         city:'',
         district:'',
-        store_name:''
+        store_name:'',
+        store_link:''
       },
-      items: [
-        'İstanbul', 'Ankara','İzmir'
-      ],
+      items: [],
       differentItem: [
-        {name:'Sarıyer', city:'İstanbul', number:1},
-        {name:'Beşiktaş', city:'İstanbul', number:2},
-        {name:'Üsküdar', city:'İstanbul', number:3},
       ]
     };
+  },
+  created() {
+    this.getCities();
   },
   methods:{
     async createStore(){
       try{
-        await axios.post('http://10.20.1.126:8081/api/store/create-stores',this.store).then((response)=>{
+        axios.post('http://10.20.1.126:8081/api/store/create-stores',this.store).then((response)=>{
           this.store = response.data;
         })
       }
       catch(error){
+        console.error('hata!!',error)
+      }
+    },
+
+    async getCities(){
+      try{
+        axios.get('http://10.20.1.126:8081/api/city/get-all-cities').then((response)=>{
+          this.items = response.data;
+          console.log(this.items);
+        })
+      }
+      catch (error){
+        console.error('hata!!',error)
+      }
+    },
+
+    async getDistricts(){
+      try{
+        axios.get('http://10.20.1.126:8081/api/district/get-all-districts?city='+this.store.city)
+        .then((response)=>{
+          this.differentItem = response.data;
+          console.log(this.differentItem);
+        })
+      }
+      catch (error){
         console.error('hata!!',error)
       }
     }

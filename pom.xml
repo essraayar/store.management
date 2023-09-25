@@ -52,6 +52,12 @@
 			<version>42.6.0</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- JasperReports library -->
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.17.0</version>
+		</dependency>
 
 	</dependencies>
 

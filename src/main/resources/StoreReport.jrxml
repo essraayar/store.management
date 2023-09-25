@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="storeReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56767734-e0ab-4d68-9db1-5a6a3e627816">
+    <property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
+    <parameter name="CITY" class="java.lang.String"/>
+    <parameter name="DISTRICT" class="java.lang.String"/>
+    <queryString language="SQL">
+        <![CDATA[select s.*, c.name city,d.name district from stores s , city c , district d where c.id=s.city_id and d.id=s.district_id and c.name=NVL($P{CITY},c.name) and  d.name=NVL($P{DISTRICT},d.name) ;]]>
+    </queryString>
+    <field name="store_name" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="store_name"/>
+        <property name="com.jaspersoft.studio.field.label" value="store_name"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="stores"/>
+    </field>
+    <field name="store_type" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="store_type"/>
+        <property name="com.jaspersoft.studio.field.label" value="store_type"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="stores"/>
+    </field>
+    <field name="city" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="city"/>
+        <property name="com.jaspersoft.studio.field.label" value="city"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="city"/>
+    </field>
+    <field name="district" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="district"/>
+        <property name="com.jaspersoft.studio.field.label" value="district"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="district"/>
+    </field>
+    <field name="store_link" class="java.lang.String">
+        <property name="com.jaspersoft.studio.field.name" value="store_link"/>
+        <property name="com.jaspersoft.studio.field.label" value="store_link"/>
+        <property name="com.jaspersoft.studio.field.tree.path" value="stores"/>
+    </field>
+    <background>
+        <band splitType="Stretch"/>
+    </background>
+    <title>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="200" y="0" width="100" height="30" uuid="8693fa8e-490d-48f5-b9f1-aaee9e9c5e40">
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                    <property name="com.jaspersoft.studio.unit.x" value="px"/>
+                </reportElement>
+                <textElement textAlignment="Center"/>
+                <text><![CDATA[Mağaza Rapor]]></text>
+            </staticText>
+        </band>
+    </title>
+    <columnHeader>
+        <band height="30" splitType="Stretch">
+            <staticText>
+                <reportElement x="0" y="0" width="100" height="30" uuid="cca375b4-280b-4ef8-b07b-901ed9a30383">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e8f67aa-1552-43f5-8e3a-ca207d63429e"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <text><![CDATA[Mağaza Adı]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="100" y="0" width="130" height="30" uuid="dba89387-b343-49c4-af30-0a9990a8aaca">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe47876b-33a9-4b3c-b894-1fa2b5fb5103"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <text><![CDATA[Mağaza Türü]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="230" y="0" width="100" height="30" uuid="b005891e-fbde-449d-ba4f-5af710436304">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ab6ef04-b35d-4826-a1df-b4a6f4f0e374"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <text><![CDATA[Şehir]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="330" y="0" width="100" height="30" uuid="2dc9e6ee-76b5-4a6d-93ef-3e10a75c57a7">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00a1259e-18bd-48e4-aafb-ede6f7d0eea3"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <text><![CDATA[İlçe]]></text>
+            </staticText>
+            <staticText>
+                <reportElement x="430" y="0" width="100" height="30" uuid="cd97c745-5160-479b-b6d5-8fae8542826b">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a8dfd2e2-a3ac-4e06-9c3d-0088a9f9d5b1"/>
+                    <property name="com.jaspersoft.studio.unit.y" value="px"/>
+                </reportElement>
+                <text><![CDATA[Link]]></text>
+            </staticText>
+        </band>
+    </columnHeader>
+    <detail>
+        <band height="30" splitType="Stretch">
+            <textField>
+                <reportElement x="0" y="0" width="100" height="30" uuid="a16adf8b-8ac7-4e68-8d93-6221e0eb6ce8">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="8e8f67aa-1552-43f5-8e3a-ca207d63429e"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{store_name}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="100" y="0" width="130" height="30" uuid="e739a4c5-bbd7-462c-940e-65557258da0e">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="fe47876b-33a9-4b3c-b894-1fa2b5fb5103"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{store_type}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="230" y="0" width="100" height="30" uuid="07ee44aa-07c1-48ee-8b00-da0a0b04165f">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="7ab6ef04-b35d-4826-a1df-b4a6f4f0e374"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{city}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="330" y="0" width="100" height="30" uuid="4a8f2945-7bb7-48ff-8bb5-e8887f65a2da">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="00a1259e-18bd-48e4-aafb-ede6f7d0eea3"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{district}]]></textFieldExpression>
+            </textField>
+            <textField>
+                <reportElement x="430" y="0" width="100" height="30" uuid="6a57dfce-7e77-4a40-8bc1-3c9d36cc6220">
+                    <property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a8dfd2e2-a3ac-4e06-9c3d-0088a9f9d5b1"/>
+                </reportElement>
+                <textFieldExpression><![CDATA[$F{store_link}]]></textFieldExpression>
+            </textField>
+        </band>
+    </detail>
+</jasperReport>

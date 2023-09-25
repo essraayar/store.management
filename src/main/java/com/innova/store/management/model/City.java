@@ -9,6 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "city",uniqueConstraints = {@UniqueConstraint(columnNames = {"name"})})
+@Data
 public class City {
 
     @Id
